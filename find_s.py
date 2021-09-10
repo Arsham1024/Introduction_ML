@@ -33,8 +33,23 @@ print(hypothesis)
 print("\nFinding all the positive samples:")
 positive_h = []
 for row in db:
-    if row[-1] == "yes":
-        print(row)
+    if row[-1] == "Yes":
+        positive_h.append(row)
+
+# delete the class column
+[row.pop(-1) for row in positive_h]
+
+# Now step two generalizing the hypothesis:
+for row in positive_h:
+    i = 0
+    for item in row:
+        # first scenario where it is 0 we are comparing to
+        if hypothesis[i] == '0':
+            hypothesis[i] = item
+            i+=1
+        # second scenario where the value of h is not 0
+        elif not hypothesis[i] == str(item):
+            hypothesis[i] = "?"
 
 
 #find the maximally specific hypothesis according to your training data in db and assign it to the vector hypothesis (special characters allowed: "0" and "?")
