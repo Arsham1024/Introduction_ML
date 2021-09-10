@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
+# AUTHOR: Arsham Mehrani
+# FILENAME: Find S algorithm implementation
 # SPECIFICATION: description of the program
 # FOR: CS 4200- Assignment #1
 # TIME SPENT: how long it took you to complete the assignment
@@ -16,7 +16,7 @@ db = []
 print("\n The Given Training Data Set \n")
 
 #reading the data in a csv file
-with open('contact_lens.csv', 'r') as csvfile:
+with open('input_files/contact_lens.csv', 'r') as csvfile:
   reader = csv.reader(csvfile)
   for i, row in enumerate(reader):
       if i > 0: #skipping the header
@@ -29,6 +29,13 @@ print(hypothesis)
 
 #find the first positive training data in db and assign it to the vector hypothesis
 ##--> add your Python code here
+
+print("\nFinding all the positive samples:")
+positive_h = []
+for row in db:
+    if row[-1] == "yes":
+        print(row)
+
 
 #find the maximally specific hypothesis according to your training data in db and assign it to the vector hypothesis (special characters allowed: "0" and "?")
 ##--> add your Python code here
