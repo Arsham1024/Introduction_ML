@@ -1,9 +1,10 @@
 # -------------------------------------------------------------------------
 # AUTHOR: Arsham Mehrani
 # FILENAME: Find S algorithm implementation
-# SPECIFICATION: description of the program
+# SPECIFICATION: This program implements the find_s algorithm. This program will return
+#                maximally specific hypothesis that matches the data set contact_lens.
 # FOR: CS 4200- Assignment #1
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 1 hour
 # -----------------------------------------------------------*/
 
 # IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard vectors and arrays
