@@ -28,16 +28,30 @@ with open('input_files/contact_lens.csv', 'r') as csvfile:
 #--> add your Python code here
 # X =
 print("Transforming the data into numerical values: ")
-temp = []
 # Loop through all the rows
-for row in db:
-    # loop through all the cols except for last one
-    for col in row[:len(row)-1]:
-        # if the label is unique put that in temp.
-        if not col in temp:
-            temp.append(col)
+# for row in db:
+#     # loop through all the cols except for last one
+#     for col in row[:len(row)-1]:
+#         # if the label is unique put that in temp.
+#         if not col in temp:
+#             temp.append(col)
 
-print(temp)
+# Run through every col and pick out the unique elements to assign numbers to
+print("here : " )
+for col in range(len(db[:4])):
+    # reset temp for every col
+    temp =[]
+    dict =  {}
+    i = 1
+    for row in range(len(db)):
+        # if the element is in temp then that means we already accounted for it.
+        # put the unique element in the dictionary with unique ID
+        if not db[row][col] in temp:
+            temp.append(db[row][col])
+            dict[i] = db[row][col]
+            i+=1
+    print(dict)
+
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 #--> addd your Python code here
