@@ -41,7 +41,8 @@ print(temp)
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 #--> addd your Python code here
-# Y =
+Y = [1 if row[-1] == "Yes" else 2 for row in db]
+
 
 #fitting the decision tree to the data
 # clf = tree.DecisionTreeClassifier(criterion = 'entropy')
