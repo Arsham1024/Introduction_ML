@@ -21,20 +21,12 @@ with open('input_files/contact_lens.csv', 'r') as csvfile:
   reader = csv.reader(csvfile)
   for i, row in enumerate(reader):
       if i > 0: #skipping the header
-         db.append (row)
+         db.append(row)
          print(row)
 
 #transform the original training features to numbers and add to the 4D array X. For instance Young = 1, Prepresbyopic = 2, Presbyopic = 3, so X = [[1, 1, 1, 1], [2, 2, 2, 2], ...]]
 #--> add your Python code here
 # X =
-print("Transforming the data into numerical values: ")
-# Loop through all the rows
-# for row in db:
-#     # loop through all the cols except for last one
-#     for col in row[:len(row)-1]:
-#         # if the label is unique put that in temp.
-#         if not col in temp:
-#             temp.append(col)
 
 # Run through every col and pick out the unique elements to assign numbers to
 print("here : " )
@@ -48,10 +40,16 @@ for col in range(len(db[:4])):
         # put the unique element in the dictionary with unique ID
         if not db[row][col] in temp:
             temp.append(db[row][col])
-            dict[i] = db[row][col]
+            dict[db[row][col]] = i
             i+=1
     print(dict)
+    column = []
+    for row in range(len(db)):
+        if db[row][col] in dict:
+            column.append(dict.get(db[row][col]))
+    X.append(column)
 
+# print(X)
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 #--> addd your Python code here
@@ -59,9 +57,9 @@ Y = [1 if row[-1] == "Yes" else 2 for row in db]
 
 
 #fitting the decision tree to the data
-# clf = tree.DecisionTreeClassifier(criterion = 'entropy')
-# clf = clf.fit(X, Y)
+clf = tree.DecisionTreeClassifier(criterion = 'entropy')
+clf = clf.fit(X, Y)
 
 #plotting the decision tree
-# tree.plot_tree(clf, feature_names=['Age', 'Spectacle', 'Astigmatism', 'Tear'], class_names=['Yes','No'], filled=True, rounded=True)
-# plt.show()
+tree.plot_tree(clf, feature_names=['Age', 'Spectacle', 'Astigmatism', 'Tear'], class_names=['Yes','No'], filled=True, rounded=True)
+plt.show()
