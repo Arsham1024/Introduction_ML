@@ -43,10 +43,16 @@ for col in range(len(db[:4])):
             dict[db[row][col]] = i
             i+=1
     print(dict)
+    # Because dictionary elements are all unique I can use that to give keys to each unique value in each col
+    # column array is to store every element in a column so that it can be appended to X
+    # without this X would be a 1D array
     column = []
+    # run through each col again
     for row in range(len(db)):
+        # if the element is in the dictionary get the key of that element and store it in the column array
         if db[row][col] in dict:
             column.append(dict.get(db[row][col]))
+    # append everything column to X
     X.append(column)
 
 # print(X)
