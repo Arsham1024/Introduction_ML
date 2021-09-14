@@ -55,7 +55,18 @@ for col in range(len(db[:4])):
     # append everything column to X
     X.append(column)
 
-# print(X)
+# Fixing the X array to be the correct way:
+temp = []
+for row in X:
+    i = 0
+
+    for item in row:
+        j = 0
+        print(X[i][j])
+        i+=1
+
+    j+=1
+print(X, sep="\n")
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 #--> addd your Python code here
