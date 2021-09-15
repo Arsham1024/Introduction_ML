@@ -43,6 +43,7 @@ for col in range(len(db[:4])):
             dict[db[row][col]] = i
             i+=1
     print(dict)
+
     # Because dictionary elements are all unique I can use that to give keys to each unique value in each col
     # column array is to store every element in a column so that it can be appended to X
     # without this X would be a 1D array
@@ -62,6 +63,13 @@ for i in range(len(X[i])):
         # print(i , j)
         temp.append(X[j][i])
 print(temp, sep="\n")
+
+# reshaping the temp array without numpy
+print("hello")
+
+list_of_lists = [[col for col in temp[:]] for row in temp]
+print(list_of_lists)
+
 
 X = temp.copy()
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
