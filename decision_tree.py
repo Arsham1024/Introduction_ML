@@ -29,7 +29,6 @@ with open('input_files/contact_lens.csv', 'r') as csvfile:
 # X =
 
 # Run through every col and pick out the unique elements to assign numbers to
-print("here : " )
 for col in range(len(db[:4])):
     # reset temp for every col
     temp =[]
@@ -42,8 +41,6 @@ for col in range(len(db[:4])):
             temp.append(db[row][col])
             dict[db[row][col]] = i
             i+=1
-    print(dict)
-
     # Because dictionary elements are all unique I can use that to give keys to each unique value in each col
     # column array is to store every element in a column so that it can be appended to X
     # without this X would be a 1D array
@@ -56,22 +53,22 @@ for col in range(len(db[:4])):
     # append everything column to X
     X.append(column)
 
+print(X)
+
+temp1 = []
+x = []
 # Fixing the X array to be the correct way:
-temp = []
-for i in range(len(X[i])):
+# The X array needs to 4 cols X 10 rows
+# The X array right now is the reverse
+for i in range(10):
     for j in range(len(X)):
-        # print(i , j)
-        temp.append(X[j][i])
-print(temp, sep="\n")
-
-# reshaping the temp array without numpy
-print("hello")
-
-list_of_lists = [[col for col in temp[:]] for row in temp]
-print(list_of_lists)
+        temp1.append(X[j][i])
+    x.append(temp1)
+    temp1 = []
+X = []
+X = x.copy()
 
 
-X = temp.copy()
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 #--> addd your Python code here
 Y = [1 if row[-1] == "Yes" else 2 for row in db]
