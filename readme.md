@@ -21,7 +21,7 @@ the class attribute is Recommended Lenses and it is a binary class.
 ### How:
 ###### 
 ---
-### What did we learn?
+### What did I learn?
 ###### 
 ---
 ### Using: 
