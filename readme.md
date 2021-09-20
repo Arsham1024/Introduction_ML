@@ -16,7 +16,7 @@ The attributes are:
 * Astigmatism
 * Tear Production Rate
 
-the class attribute is Recommended Lenses and it is a binary class.
+the class attribute is the recommendations regarding Lenses and it is a binary class.
 ---
 ### How:
 ###### 
