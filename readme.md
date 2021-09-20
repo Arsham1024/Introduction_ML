@@ -19,7 +19,9 @@ The attributes are:
 the class attribute is the recommendations regarding Lenses and it is a binary class.
 ---
 ### How:
-###### 
+###### The algorithm constructs a tree with the best attribute chosen as root node. The best node is decided using the entropy/gain method. This uses the following formula to calculate entropy:
+* Gain
+to calculate gain:
 ---
 ### What did I learn?
 ###### 
