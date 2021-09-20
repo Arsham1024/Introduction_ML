@@ -22,7 +22,7 @@ the class attribute is the recommendations regarding Lenses and it is a binary c
 ###### The algorithm constructs a tree with the best attribute chosen as root node. The best node is decided using the entropy/gain method. This uses the following formula to calculate entropy:
 ### Entropy(s) = -p<sub>+</sub> log<sub>2</sub><sup>P<sub>+</sub></sup> -p<sub>-</sub> log<sub>2</sub><sup>P<sub>-</sub></sup>
 ###### to calculate gain:
-### Gain(S,A) = Entropy(S) - \sigma (S<sub>v</sub>/S) Entropy(S<sub>v</sub>)
+### Gain(S,A) = Entropy(S) - \Sigma (S<sub>v</sub>/S) Entropy(S<sub>v</sub>)
 ---
 ### What did I learn?
 ###### 
