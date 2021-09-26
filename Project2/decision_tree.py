@@ -57,12 +57,54 @@ for ds in dataSets:
             elif dbTraining[row][col] == "Normal":
                 X_r.append(2)
         X.append(X_r)
-    print("Here is X:", X)
+    print("X in this data set is : ", X)
 
     # transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
     # --> add your Python code here
     Y = [1 if row[-1] == "Yes" else 2 for row in dbTraining]
-    print("Here is Y:", Y)
+    print("Y in this data set is : ", Y)
+
+    # -----------------------------------------------------------------------
+    # read the test data and add this data to dbTest
+    # --> add your Python code here
+    dbTest = []
+    with open("./testfile/contact_lens_test.csv", "r") as testfile:
+        reader = csv.reader(testfile)
+        for i, row in enumerate(reader):
+            if i > 0:  # skipping the header
+                dbTest.append(row)
+    # transform the features of the test instances to numbers following the same strategy done during training, and then use the decision tree to make the class prediction. For instance:
+    # class_predicted = clf.predict([[3, 1, 2, 1]])[0]           -> [0] is used to get an integer as the predicted class label so that you can compare it with the true label
+    # --> add your Python code here
+    testset = []
+    for row in range(len(dbTest)):
+        X_r = []
+        # Not the class col
+        for col in range(len(dbTest[row]) - 1):
+            if dbTest[row][col] == "Young":
+                X_r.append(1)
+            elif dbTest[row][col] == "Presbyopic":
+                X_r.append(2)
+            elif dbTest[row][col] == "Prepresbyopic":
+                X_r.append(3)
+            #     New attribute
+            elif dbTest[row][col] == "Myope":
+                X_r.append(1)
+            elif dbTest[row][col] == "Hypermetrope":
+                X_r.append(2)
+            #     New attribute
+            elif dbTest[row][col] == "Yes":
+                X_r.append(1)
+            elif dbTest[row][col] == "No":
+                X_r.append(2)
+            #     New Attribute
+            elif dbTest[row][col] == "Reduced":
+                X_r.append(1)
+            elif dbTest[row][col] == "Normal":
+                X_r.append(2)
+        testset.append(X_r)
+    print("The test set is : ", testset)
+
 
     # loop your training and test tasks 10 times here
     for i in range(10):
@@ -70,22 +112,12 @@ for ds in dataSets:
         clf = tree.DecisionTreeClassifier(criterion='entropy', max_depth=3)
         clf = clf.fit(X, Y)
 
-        # read the test data and add this data to dbTest
-        # --> add your Python code here
-        dbTest = []
-        with open("./testfile/contact_lens_test.csv", "r") as testfile:
-            reader = csv.reader(testfile)
-            for i, row in enumerate(reader):
-                if i > 0:  # skipping the header
-                    dbTest.append(row)
+        class_predicted = "Yes" if clf.predict(testset)[0] == 1 else "No"
+        print(class_predicted)
+        print(i)
 
-        print(dbTest)
-    for data in dbTest:
-    # transform the features of the test instances to numbers following the same strategy done during training, and then use the decision tree to make the class prediction. For instance:
-    # class_predicted = clf.predict([[3, 1, 2, 1]])[0]           -> [0] is used to get an integer as the predicted class label so that you can compare it with the true label
-    # --> add your Python code here
 
-    # compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
+    # compa1re the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
     # --> add your Python code here
 
     # find the lowest accuracy of this model during the 10 runs (training and test set)
