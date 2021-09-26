@@ -80,7 +80,7 @@ for ds in dataSets:
                     dbTest.append(row)
 
         print(dbTest)
-    # for data in dbTest:
+    for data in dbTest:
     # transform the features of the test instances to numbers following the same strategy done during training, and then use the decision tree to make the class prediction. For instance:
     # class_predicted = clf.predict([[3, 1, 2, 1]])[0]           -> [0] is used to get an integer as the predicted class label so that you can compare it with the true label
     # --> add your Python code here
