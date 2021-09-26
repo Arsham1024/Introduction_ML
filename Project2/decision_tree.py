@@ -52,7 +52,7 @@ for ds in dataSets:
             elif dbTraining[row][col] == "No":
                 X_r.append(2)
             #     New Attribute
-            elif dbTraining[row][col] == "reduced":
+            elif dbTraining[row][col] == "Reduced":
                 X_r.append(1)
             elif dbTraining[row][col] == "Normal":
                 X_r.append(2)
@@ -74,7 +74,7 @@ for ds in dataSets:
         # --> add your Python code here
         dbTest = []
         with open("./testfile/contact_lens_test.csv", "r") as testfile:
-            reader = csv.reader(csvfile)
+            reader = csv.reader(testfile)
             for i, row in enumerate(reader):
                 if i > 0:  # skipping the header
                     dbTest.append(row)
