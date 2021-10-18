@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
+# AUTHOR: Arsham Mehrani
+# FILENAME: bagging_random_forest
 # SPECIFICATION: description of the program
 # FOR: CS 4210- Assignment #3
 # TIME SPENT: how long it took you to complete the assignment
@@ -25,7 +25,7 @@ with open('optdigits.tra', 'r') as trainingFile:
   reader = csv.reader(trainingFile)
   for i, row in enumerate(reader):
       dbTraining.append (row)
-
+print(dbTraining)
 #reading the test data in a csv file
 with open('optdigits.tes', 'r') as testingFile:
   reader = csv.reader(testingFile)

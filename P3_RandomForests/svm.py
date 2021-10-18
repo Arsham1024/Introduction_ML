@@ -58,15 +58,18 @@ for c_value in c: #iterates over c
                 #--> add your Python code here
                 for i in range(len(X_dbTest)):
                     model_score = clf.score(X_dbTest , Y_dbTest)
+                    print(highestAccuracy)
                     if model_score > highestAccuracy:
                         highestAccuracy = model_score
+                        print(f"Highest SVM accuracy so far: {highestAccuracy}, Parameters: c={c_value}, degree={degree_value},"
+                              f" kernel= {kernel_value}, decision_function_shape = {dfs_value}")
                     else:
                         continue
+
                 #check if the calculated accuracy is higher than the previously one calculated. If so, update update the highest accuracy and print it together with the SVM hyperparameters
                 #Example: "Highest SVM accuracy so far: 0.92, Parameters: a=1, degree=2, kernel= poly, decision_function_shape = 'ovo'"
                 #--> add your Python code here
-                    print(f"Highest SVM accuracy so far: {highestAccuracy}, Parameters: c={c_value}, degree={degree_value},"
-                          f" kernel= {kernel_value}, decision_function_shape = {dfs_value}")
+
 
 
 
