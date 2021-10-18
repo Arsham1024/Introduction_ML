@@ -3,7 +3,7 @@
 # FILENAME: SVM.py
 # SPECIFICATION: Implement the best version of SVM
 # FOR: CS 4210- Assignment #3
-# TIME SPENT:
+# TIME SPENT: 1 hour
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard vectors and arrays
@@ -13,7 +13,8 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score
 import csv
 
-dbTest = []
+X_dbTest = []
+Y_dbTest = []
 X_training = []
 Y_training = []
 c = [1, 5, 10, 100]
@@ -35,9 +36,9 @@ with open('optdigits.tra', 'r') as trainingFile:
 with open('optdigits.tes', 'r') as testingFile:
   reader = csv.reader(testingFile)
   for i, row in enumerate(reader):
-      dbTest.append(row[:-1])# test array is reading the class as well
+      X_dbTest.append(row[:-1])# test array is reading the class as well
+      Y_dbTest.append(row[-1]) # Class of every instance
 
-print(len(dbTest[1]))
 
 #created 4 nested for loops that will iterate through the values of c, degree, kernel, and decision_function_shape
 #--> add your Python code here
@@ -55,15 +56,17 @@ for c_value in c: #iterates over c
 
                 #make the classifier prediction for each test sample and start computing its accuracy
                 #--> add your Python code here
-                for test_case in dbTest:
-                    class_predicted = clf.predict(dbTest)
-                    print("here")
-                print(accuracy_score(dbTest[-1] , class_predicted))
-
+                for i in range(len(X_dbTest)):
+                    model_score = clf.score(X_dbTest , Y_dbTest)
+                    if model_score > highestAccuracy:
+                        highestAccuracy = model_score
+                    else:
+                        continue
                 #check if the calculated accuracy is higher than the previously one calculated. If so, update update the highest accuracy and print it together with the SVM hyperparameters
                 #Example: "Highest SVM accuracy so far: 0.92, Parameters: a=1, degree=2, kernel= poly, decision_function_shape = 'ovo'"
                 #--> add your Python code here
-
+                    print(f"Highest SVM accuracy so far: {highestAccuracy}, Parameters: c={c_value}, degree={degree_value},"
+                          f" kernel= {kernel_value}, decision_function_shape = {dfs_value}")
 
 
 
