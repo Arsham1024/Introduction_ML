@@ -84,8 +84,8 @@ with open('optdigits.tes', 'r') as testingFile:
     # now, compare the final ensemble prediction (majority vote in classVotes) for each test sample with the ground truth label to calculate the accuracy of the ensemble classifier (all base classifiers together)
     correct_sample = 0  # reseting correctGuess
     for i, testSample in enumerate(dbTest):
-        majority_vote = int(classVotes[i].index(max(classVotes[i])))
-        correct_sample += 1 * (majority_vote == int(testSample[-1]))
+        majority_vote = int(classVotes[i].index(max(classVotes[i]))) # each row classVotes[i], so select the maximum number/vote then return index for each row find the maximum vote and return the index
+        correct_sample += 1 * (1 if majority_vote == int(testSample[-1]) else 0) # if the class predicted by majority vote matches ground truth then +1 to sample else 0
 
     # printing the ensemble accuracy here
     ensemble_accuracy = correct_sample / len(dbTest)
