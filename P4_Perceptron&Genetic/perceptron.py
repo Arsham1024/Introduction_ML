@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Arsham Mehrani
+# FILENAME: perceptron.py
+# SPECIFICATION: implementation of a perceptron class
 # FOR: CS 4210- Assignment #4
 # TIME SPENT: how long it took you to complete the assignment
 #-----------------------------------------------------------*/
