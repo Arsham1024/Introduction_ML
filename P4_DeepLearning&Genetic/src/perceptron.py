@@ -26,13 +26,13 @@ P_accuracy = [] # perceptron accuracy array
 MLP_accuracy = [] # Multi Layer Perceptron accuracy array
 
 # ------------------ this is for training data ------------------
-df = pd.read_csv('optdigits.tra', sep=',', header=None) #reading the data by using Pandas library
+df = pd.read_csv('../Test_Train/optdigits.tra', sep=',', header=None) #reading the data by using Pandas library
 
 X_training = np.array(df.values)[:,:64] #getting the first 64 fields to form the feature data for training
 y_training = np.array(df.values)[:,-1]  #getting the last field to form the class label for training
 
 # ------------------ this is for testing data ------------------
-df = pd.read_csv('optdigits.tes', sep=',', header=None) #reading the data by using Pandas library
+df = pd.read_csv('../Test_Train/optdigits.tes', sep=',', header=None) #reading the data by using Pandas library
 
 X_test = np.array(df.values)[:,:64]    #getting the first 64 fields to form the feature data for test
 Y_test = np.array(df.values)[:,-1]     #getting the last field to form the class label for test
