@@ -16,12 +16,14 @@ from sklearn.neural_network import MLPClassifier #pip install scikit-learn==0.18
 import numpy as np
 import pandas as pd
 
+
 # Possible values for learning rate
 n = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0]
 # possible values for random state
 r = [True, False]
 
-highest_accuracy = 0
+P_accuracy = [] # perceptron accuracy array
+MLP_accuracy = [] # Multi Layer Perceptron accuracy array
 
 # ------------------ this is for training data ------------------
 df = pd.read_csv('optdigits.tra', sep=',', header=None) #reading the data by using Pandas library
@@ -59,21 +61,35 @@ for w in n: #iterates over n
             #to make a prediction do: clf.predict([x_testSample])
             #--> add your Python code here
 
-            predictions = clf.predict(X_test)
+            prediction = clf.predict(X_test)
             correct = 0
-            for i in range(len(predictions)):
-                if predictions[i] == Y_test[i]:
-                    correct+=1
+            # count the correct instances
+            for i in range(len(prediction)):
+                if prediction[i] == Y_test[i]:
+                    correct += 1
 
-            accuracy = correct/len(predictions)
-            if highest_accuracy < accuracy:
-                highest_accuracy = accuracy
-                print(highest_accuracy)
             #check if the calculated accuracy is higher than the previously one calculated for each classifier. If so, update the highest accuracy and print it together with the network hyperparameters
             #Example: "Highest Perceptron accuracy so far: 0.88, Parameters: learning rate=0.01, random_state=True"
             #Example: "Highest MLP accuracy so far: 0.90, Parameters: learning rate=0.02, random_state=False"
             #--> add your Python code here
 
+            # calculate current accuracy:
+            accuracy = correct/len(prediction)
+            # if a == 0 then the accuracy belongs to Perceptron else it belongs to MLP
+
+            if a == 0:
+                P_accuracy.append(accuracy)
+            else:
+                MLP_accuracy.append(accuracy)
+
+
+# sort the arrays to put the highest accuracy at the top and easily extract
+P_accuracy.sort()
+MLP_accuracy.sort()
+
+# This will print out at the end with the results.
+print(f"Highest Perceptron accuracy so far: {P_accuracy[0]}, Parameters: learning rate={w}, random_state={b}")
+print(f"Highest MLP accuracy so far: {MLP_accuracy[0]}, Parameters: learning rate={w}, random_state={b}")
 
 
 
