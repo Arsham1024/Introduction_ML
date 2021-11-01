@@ -3,7 +3,9 @@
 # FILENAME: perceptron.py
 # SPECIFICATION: implementation of a perceptron class
 # FOR: CS 4210- Assignment #4
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: extremely long time not because it was a hard assignment but because I was configuring my M1 mac to work
+#             with this environment and it was a difficult job but I have now set it up and should be faster.
+#             Actually pretty happy I spend those hours on it I didn't realize how the time went by.
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: YOU HAVE TO WORK WITH THE PYTHON LIBRARIES numpy AND pandas to complete this code.
@@ -14,18 +16,24 @@ from sklearn.neural_network import MLPClassifier #pip install scikit-learn==0.18
 import numpy as np
 import pandas as pd
 
+# Possible values for learning rate
 n = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0]
+# possible values for random state
 r = [True, False]
 
+highest_accuracy = 0
+
+# ------------------ this is for training data ------------------
 df = pd.read_csv('optdigits.tra', sep=',', header=None) #reading the data by using Pandas library
 
 X_training = np.array(df.values)[:,:64] #getting the first 64 fields to form the feature data for training
 y_training = np.array(df.values)[:,-1]  #getting the last field to form the class label for training
 
+# ------------------ this is for testing data ------------------
 df = pd.read_csv('optdigits.tes', sep=',', header=None) #reading the data by using Pandas library
 
 X_test = np.array(df.values)[:,:64]    #getting the first 64 fields to form the feature data for test
-y_test = np.array(df.values)[:,-1]     #getting the last field to form the class label for test
+Y_test = np.array(df.values)[:,-1]     #getting the last field to form the class label for test
 
 for w in n: #iterates over n
 
@@ -34,10 +42,13 @@ for w in n: #iterates over n
         for a in range(2): #iterates over the algorithms
 
             #Create a Neural Network classifier
+            # if a == 0 train a perceptron
             if a==0:
-               clf = Perceptron(eta0=w, random_state=b, n_iter=1000) #eta0 = learning rate, random_state = shuffle the training data
+               clf = Perceptron(eta0=w, shuffle=b, max_iter=1000) #eta0 = learning rate, random_state = shuffle the training data
+
+            # if a == 1 train a multi layer perceptron with a single hidden layers with 25 neurons in that layer.
             else:
-               clf = MLPClassifier(activation='logistic', learning_rate_init=w, hidden_layer_sizes=(25,), random_state=b, max_iter=1000) #learning_rate_init = learning rate, hidden_layer_sizes = number of neurons in the ith hidden layer, random_state = shuffle the training data
+               clf= MLPClassifier(activation='logistic', learning_rate_init=w, hidden_layer_sizes=(25,), shuffle =b, max_iter=1000) #learning_rate_init = learning rate, hidden_layer_sizes = number of neurons in the ith hidden layer, random_state = shuffle the training data
 
             #Fit the Neural Network to the training data
             clf.fit(X_training, y_training)
@@ -48,6 +59,16 @@ for w in n: #iterates over n
             #to make a prediction do: clf.predict([x_testSample])
             #--> add your Python code here
 
+            predictions = clf.predict(X_test)
+            correct = 0
+            for i in range(len(predictions)):
+                if predictions[i] == Y_test[i]:
+                    correct+=1
+
+            accuracy = correct/len(predictions)
+            if highest_accuracy < accuracy:
+                highest_accuracy = accuracy
+                print(highest_accuracy)
             #check if the calculated accuracy is higher than the previously one calculated for each classifier. If so, update the highest accuracy and print it together with the network hyperparameters
             #Example: "Highest Perceptron accuracy so far: 0.88, Parameters: learning rate=0.01, random_state=True"
             #Example: "Highest MLP accuracy so far: 0.90, Parameters: learning rate=0.02, random_state=False"
