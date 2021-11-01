@@ -3,9 +3,7 @@
 # FILENAME: perceptron.py
 # SPECIFICATION: implementation of a perceptron class
 # FOR: CS 4210- Assignment #4
-# TIME SPENT: extremely long time not because it was a hard assignment but because I was configuring my M1 mac to work
-#             with this environment and it was a difficult job but I have now set it up and should be faster.
-#             Actually pretty happy I spend those hours on it I didn't realize how the time went by.
+# TIME SPENT: 2 hours
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: YOU HAVE TO WORK WITH THE PYTHON LIBRARIES numpy AND pandas to complete this code.
@@ -25,6 +23,10 @@ r = [True, False]
 P_accuracy = [] # perceptron accuracy array
 MLP_accuracy = [] # Multi Layer Perceptron accuracy array
 
+# highest accuracies so far
+highest_P = 0
+highest_MLP = 0
+
 # ------------------ this is for training data ------------------
 df = pd.read_csv('../Test_Train/optdigits.tra', sep=',', header=None) #reading the data by using Pandas library
 
@@ -36,6 +38,8 @@ df = pd.read_csv('../Test_Train/optdigits.tes', sep=',', header=None) #reading t
 
 X_test = np.array(df.values)[:,:64]    #getting the first 64 fields to form the feature data for test
 Y_test = np.array(df.values)[:,-1]     #getting the last field to form the class label for test
+
+
 
 for w in n: #iterates over n
 
@@ -61,35 +65,45 @@ for w in n: #iterates over n
             #to make a prediction do: clf.predict([x_testSample])
             #--> add your Python code here
 
-            prediction = clf.predict(X_test)
-            correct = 0
-            # count the correct instances
-            for i in range(len(prediction)):
-                if prediction[i] == Y_test[i]:
-                    correct += 1
+            if a == 0:
+                prediction_P = clf.predict(X_test)
+                correct = 0
+                # count the correct instances
+                for i in range(len(prediction_P)):
+                    if prediction_P[i] == Y_test[i]:
+                        correct += 1
+                # calculate current accuracy:
+                accuracy_P = correct / len(prediction_P)
+
+            else:
+                prediction_MLP = clf.predict(X_test)
+                correct = 0
+                # count the correct instances
+                for i in range(len(prediction_MLP)):
+                    if prediction_MLP[i] == Y_test[i]:
+                        correct += 1
+                # calculate current accuracy:
+                accuracy_MLP = correct / len(prediction_MLP)
 
             #check if the calculated accuracy is higher than the previously one calculated for each classifier. If so, update the highest accuracy and print it together with the network hyperparameters
             #Example: "Highest Perceptron accuracy so far: 0.88, Parameters: learning rate=0.01, random_state=True"
             #Example: "Highest MLP accuracy so far: 0.90, Parameters: learning rate=0.02, random_state=False"
             #--> add your Python code here
 
-            # calculate current accuracy:
-            accuracy = correct/len(prediction)
-            # if a == 0 then the accuracy belongs to Perceptron else it belongs to MLP
 
-            if a == 0:
-                P_accuracy.append(accuracy)
-            else:
-                MLP_accuracy.append(accuracy)
+            try:
+                if highest_P < accuracy_P:
+                    highest_P = accuracy_P
+                    print(f"Highest Perceptron accuracy so far: {highest_P}, Parameters: learning rate={w}, random_state={b}\n")
+
+                if highest_MLP < accuracy_MLP:
+                    highest_MLP = accuracy_MLP
+                    print(f"Highest MLP accuracy so far: {highest_MLP}, Parameters: learning rate={w}, random_state={b}\n")
+            except NameError:
+                pass
 
 
-# sort the arrays to put the highest accuracy at the top and easily extract
-P_accuracy.sort()
-MLP_accuracy.sort()
 
-# This will print out at the end with the results.
-print(f"Highest Perceptron accuracy so far: {P_accuracy[-1]*100}, Parameters: learning rate={w}, random_state={b}")
-print(f"Highest MLP accuracy so far: {MLP_accuracy[-1]*100}, Parameters: learning rate={w}, random_state={b}")
 
 
 
