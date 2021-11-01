@@ -88,8 +88,8 @@ P_accuracy.sort()
 MLP_accuracy.sort()
 
 # This will print out at the end with the results.
-print(f"Highest Perceptron accuracy so far: {P_accuracy[0]}, Parameters: learning rate={w}, random_state={b}")
-print(f"Highest MLP accuracy so far: {MLP_accuracy[0]}, Parameters: learning rate={w}, random_state={b}")
+print(f"Highest Perceptron accuracy so far: {P_accuracy[0]*100}, Parameters: learning rate={w}, random_state={b}")
+print(f"Highest MLP accuracy so far: {MLP_accuracy[0]*100}, Parameters: learning rate={w}, random_state={b}")
 
 
 
