@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------
-# AUTHOR: Name
+# AUTHOR: Arsham Mehrani
 # FILENAME: title of the source file
 # SPECIFICATION: description of the program
 # FOR: CS 4210- Assignment #4
