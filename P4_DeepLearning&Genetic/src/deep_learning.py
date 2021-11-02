@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Arsham Mehrani
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# FILENAME: deep_Learning
+# SPECIFICATION: This program will implement Deep Learning using Keras and Tenser Flow
 # FOR: CS 4210- Assignment #4
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 5 hrs, most of the time I spent on this was just researching these packages and trying to learn them.
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: YOU CAN USE ANY PYTHON LIBRARY TO COMPLETE YOUR CODE.
