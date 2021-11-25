@@ -15,22 +15,35 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import silhouette_score
 from sklearn import metrics
 
-df = pd.read_csv('training_data.csv', sep=',', header=None) #reading the data by using Pandas library
+df = pd.read_csv('../input/training_data.csv', sep=',', header=None) #reading the data by using Pandas library
+
+print(df)
 
 #assign your training data to X_training feature matrix
+X_training = df.loc[: , 0:-1].copy
+print(type(X_training))
+
+top_score = 0
+scores = []
 
 #run kmeans testing different k values from 2 until 20 clusters
-     #Use:  kmeans = KMeans(n_clusters=k, random_state=0)
-     #      kmeans.fit(X_training)
+for k in range(20):
+    kmeans = KMeans(n_clusters=k, random_state=0)
+    kmeans.fit(X_training)
      #--> add your Python code
-
-
-     #for each k, calculate the silhouette_coefficient by using: silhouette_score(X_training, kmeans.labels_)
-     #find which k maximizes the silhouette_coefficient
+    current = silhouette_score(X_training, kmeans.labels_)
+    scores.append(current)
      #--> add your Python code here
+    if top_score<current:
+        top_score = current
+
 
 #plot the value of the silhouette_coefficient for each k value of kmeans so that we can see the best k
 #--> add your Python code here
+
+plt.plot(k , scores)
+plt.show()
+
 
 #reading the validation data (clusters) by using Pandas library
 #--> add your Python code here
